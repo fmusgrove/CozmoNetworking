@@ -1,7 +1,4 @@
-import json
 import time
-from threading import Thread
-
 import websocket
 
 
@@ -10,13 +7,14 @@ class WebsocketInterface:
     Uses a WebSocketApp with callbacks to process and store server messages
     """
 
-    def __init__(self, url='10.0.1.10:5000'):
+    def __init__(self, url='10.0.1.10:5000', cozmo_message_callback=None):
         self.url = url
         self.ws = None
         self.should_exit = False
         self.last_message_time = time.time()
+        self.cozmo_on_message = cozmo_message_callback
 
-    def _start_work(self):
+    def init(self):
         self.ws = websocket.WebSocketApp(url=self.url, on_open=self.on_open, on_message=self.on_message,
                                          on_error=self.on_error,
                                          on_close=self.on_close)
@@ -44,7 +42,7 @@ class WebsocketInterface:
                 self.ws.sock.close()
                 self.ws.sock = None
             self.ws = None
-            self._start_work()
+            self.init()
 
     def on_message(self, ws, msg):
         """
@@ -53,7 +51,7 @@ class WebsocketInterface:
         :param msg: message from the remote server
         """
         self.last_message_time = time.time()
-        print(msg)
+        self.cozmo_on_message(msg)
 
     def on_error(self, ws, error):
         """
