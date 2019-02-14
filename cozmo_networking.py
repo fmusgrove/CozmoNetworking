@@ -1,9 +1,10 @@
 import asyncio
 import cozmo
 from websocket_interface import WebsocketInterface
-
 from colors import Colors
 from cozmo.util import distance_mm, speed_mmps, degrees
+
+from cozmo_network_controller import send_instructions
 
 
 # region CubeAction Class
@@ -37,16 +38,14 @@ class CozmoDance:
         """
         await self.robot.turn_in_place(degrees(90)).wait_for_completed()
 
-    async def on_cozmo_message(self, instructions):
+    async def run_command(self, instructions):
         """
-        Callback that is fired when a new message is returned from the server
+        Run the command on Cozmo set in the instructions param
         :param instructions: instruction dictionary object to tell Cozmo how to move
         """
-        print(f'Name: {self.name}')
-        print(f'Instructions: {instructions}')
         if 'movement' in instructions:
             if self.name == instructions['movement']['name']:
-                print('Name matches')
+                print(f'Received Message: {instructions}')
                 move_instructions = instructions['movement']
 
                 if move_instructions['dist_x'] > 0:
@@ -66,6 +65,7 @@ class CozmoDance:
 
         elif 'head_lift' in instructions:
             if self.name == instructions['head_lift']['name']:
+                print(f'Received Message: {instructions}')
                 head_lift_instructions = instructions['head_lift']
 
                 if head_lift_instructions['head_pos'] > 0:
@@ -86,13 +86,13 @@ class CozmoDance:
 
 async def cozmo_program(robot: cozmo.robot.Robot):
     cozmo_dance = CozmoDance(robot, 'Cozmo117AE')
-    s = WebsocketInterface(url='ws://10.0.1.10:5000', cozmo_message_callback=cozmo_dance.on_cozmo_message)
-    await cozmo_dance.run()
-    s.init()
-    # await cozmo_dance.on_cozmo_message(WebsocketInterface.parse_message('CozmoRobot;56.4;0.0'))
+    websocket = WebsocketInterface(url='10.0.1.10:5000')
+    websocket.start()
 
     # Wait to receive keyboard interrupt command to exit (CTRL-C)
     while True:
+        # Grab commands off queue and run them on Cozmo
+
         await asyncio.sleep(0.5)
 
 

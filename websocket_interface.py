@@ -7,18 +7,44 @@ class WebsocketInterface:
     Uses a WebSocketApp with callbacks to process and store server messages
     """
 
-    def __init__(self, url='10.0.1.10:5000', cozmo_message_callback=None):
+    def __init__(self, url='10.0.1.10:5000'):
         self.url = url
         self.ws = None
         self.should_exit = False
         self.last_message_time = time.time()
-        self.cozmo_on_message = cozmo_message_callback
 
     def init(self):
         self.ws = websocket.WebSocketApp(url=self.url, on_open=self.on_open, on_message=self.on_message,
                                          on_error=self.on_error,
                                          on_close=self.on_close)
         self.ws.run_forever(ping_interval=30, ping_timeout=10)
+
+    #####
+    # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # command_buffer = []
+    # # s = WebsocketInterface(url='10.0.1.10:5000', cozmo_message_callback=cozmo_dance.run_command)
+    # # s.init()
+    # # await cozmo_dance.run_command(WebsocketInterface.parse_message('CozmoRobot;56.4;0.0'))
+    # ip = "10.0.1.10"
+    # port = 5000
+    # try:
+    #     s.connect((ip, port))
+    #     print('Connected to socket')
+    # except socket.error as msg:
+    #     print('Socket failed to bind')
+    #
+    # await cozmo_dance.run()
+    # while True:
+    #     data = s.recv(4048).decode('utf-8')
+    #     command = WebsocketInterface.parse_message(data)
+    #     print(f'General command: {command}')
+    #     # Sometimes the command object will be None due to a set frame buffer size
+    #     if command is not None:
+    #         command_buffer.append()
+    #         await cozmo_dance.run_command(command)
+
+
+    ######
 
     @classmethod
     def parse_message(cls, message: str):
