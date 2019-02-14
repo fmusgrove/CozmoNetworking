@@ -4,8 +4,6 @@ from websocket_interface import WebsocketInterface
 from colors import Colors
 from cozmo.util import distance_mm, speed_mmps, degrees
 
-from cozmo_network_controller import send_instructions
-
 
 # region CubeAction Class
 class CozmoDance:
@@ -86,7 +84,7 @@ class CozmoDance:
 
 async def cozmo_program(robot: cozmo.robot.Robot):
     cozmo_dance = CozmoDance(robot, name='Cozmo117AE')
-    websocket = WebsocketInterface(ip_address='10.0.1.10', port=5000, name='Cozmo117AE')
+    websocket = WebsocketInterface(ip_address='127.0.0.1', port=5000, name='Cozmo117AE')
     websocket.start()
 
     # Wait to receive keyboard interrupt command to exit (CTRL-C)
