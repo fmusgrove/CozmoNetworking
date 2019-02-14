@@ -20,6 +20,37 @@ class WebsocketInterface:
                                          on_close=self.on_close)
         self.ws.run_forever(ping_interval=30, ping_timeout=10)
 
+    @classmethod
+    def parse_message(cls, message: str):
+        """
+        Parse the string message from the network into a Python readable object
+        :param message: message string
+        :return: parsed message object with the initial key being the instruction type
+        """
+        message_list = message.split(';')
+
+        # Movement
+        if len(message_list) == 5:
+            keys = ['name', 'FB', 'LR', 'dist_x', 'dist_y']
+
+            message_obj = dict(zip(keys, message_list))
+
+            message_obj['dist_x'] = int(message_obj['dist_x'])
+            message_obj['dist_y'] = int(message_obj['dist_y'])
+
+            return {'movement': message_obj}
+        # Head/lift positions
+        elif len(message_list) == 3:
+
+            keys = ['name', 'head_pos', 'lift_pos']
+
+            message_obj = dict(zip(keys, message_list))
+
+            message_obj['head_pos'] = float(message_obj['head_pos'])
+            message_obj['lift_pos'] = float(message_obj['lift_pos'])
+
+            return {'head_lift': message_obj}
+
     def on_open(self, ws):
         """
         Callback for WebSocketApp that triggers once the socket is open
@@ -51,7 +82,7 @@ class WebsocketInterface:
         :param msg: message from the remote server
         """
         self.last_message_time = time.time()
-        self.cozmo_on_message(msg)
+        self.cozmo_on_message(WebsocketInterface.parse_message(msg))
 
     def on_error(self, ws, error):
         """
