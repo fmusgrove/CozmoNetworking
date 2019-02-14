@@ -76,18 +76,18 @@ class CozmoDance:
                     lift_height = max(0.0, min(head_lift_instructions['lift_pos'], 1.0))
                     self.robot.set_lift_height(lift_height, in_parallel=True)
 
-
-async def run(self):
-    self.robot.set_all_backpack_lights(Colors.GREEN)
-    await self.robot_say('Program running')
+    async def run(self):
+        self.robot.set_all_backpack_lights(Colors.GREEN)
+        await self.robot_say('Program running')
 
 
 # endregion
 
 
 async def cozmo_program(robot: cozmo.robot.Robot):
-    cozmo_dance = CozmoDance(robot, 'CozmoRobot')
-    s = WebsocketInterface(url='10.0.1.10:5000', cozmo_message_callback=cozmo_dance.on_cozmo_message)
+    cozmo_dance = CozmoDance(robot, 'Cozmo117AE')
+    s = WebsocketInterface(url='ws://10.0.1.10:5000', cozmo_message_callback=cozmo_dance.on_cozmo_message)
+    await cozmo_dance.run()
     s.init()
     # await cozmo_dance.on_cozmo_message(WebsocketInterface.parse_message('CozmoRobot;56.4;0.0'))
 
