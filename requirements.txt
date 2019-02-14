@@ -1,4 +1,4 @@
 cozmo==1.4.9
 cozmoclad==3.3.0
-six==1.12.0
-websocket-client==0.50.0
+numpy==1.16.1
+Pillow==5.4.1
