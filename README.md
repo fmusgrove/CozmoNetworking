@@ -1,3 +1,3 @@
 # CozmoNetworking
 
-Authors: Forrest Musgrove, Matthew Dargan
+Authors: Forrest Musgrove, Matthew Dargan, Daniel Stutz
