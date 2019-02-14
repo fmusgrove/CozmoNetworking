@@ -42,12 +42,11 @@ class CozmoDance:
         Callback that is fired when a new message is returned from the server
         :param instructions: instruction dictionary object to tell Cozmo how to move
         """
-        # TODO: Remove printing, move name check inside instruction type check
         print(f'Name: {self.name}')
         print(f'Instructions: {instructions}')
-        if self.name == instructions['head_lift']['name']:
-            print('Name matches')
-            if 'movement' in instructions:
+        if 'movement' in instructions:
+            if self.name == instructions['movement']['name']:
+                print('Name matches')
                 move_instructions = instructions['movement']
 
                 if move_instructions['dist_x'] > 0:
@@ -65,7 +64,8 @@ class CozmoDance:
                         await self.turn_clockwise()
                         await self.move_forward(move_instructions['dist_y'])
 
-            elif 'head_lift' in instructions:
+        elif 'head_lift' in instructions:
+            if self.name == instructions['head_lift']['name']:
                 head_lift_instructions = instructions['head_lift']
 
                 if head_lift_instructions['head_pos'] > 0:
@@ -76,9 +76,10 @@ class CozmoDance:
                     lift_height = max(0.0, min(head_lift_instructions['lift_pos'], 1.0))
                     self.robot.set_lift_height(lift_height, in_parallel=True)
 
-    async def run(self):
-        self.robot.set_all_backpack_lights(Colors.GREEN)
-        await self.robot_say('Program running')
+
+async def run(self):
+    self.robot.set_all_backpack_lights(Colors.GREEN)
+    await self.robot_say('Program running')
 
 
 # endregion
@@ -87,9 +88,8 @@ class CozmoDance:
 async def cozmo_program(robot: cozmo.robot.Robot):
     cozmo_dance = CozmoDance(robot, 'CozmoRobot')
     s = WebsocketInterface(url='10.0.1.10:5000', cozmo_message_callback=cozmo_dance.on_cozmo_message)
-    # s.init()
-    await cozmo_dance.run()
-    await cozmo_dance.on_cozmo_message(WebsocketInterface.parse_message('CozmoRobot;56.4;0.0'))
+    s.init()
+    # await cozmo_dance.on_cozmo_message(WebsocketInterface.parse_message('CozmoRobot;56.4;0.0'))
 
     # Wait to receive keyboard interrupt command to exit (CTRL-C)
     while True:
