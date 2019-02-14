@@ -92,8 +92,8 @@ async def cozmo_program(robot: cozmo.robot.Robot):
     # Wait to receive keyboard interrupt command to exit (CTRL-C)
     while True:
         # Grab commands off queue and run them on Cozmo
-
+        command = websocket.command_queue.get()
+        cozmo_dance.run_command(command)
         await asyncio.sleep(0.5)
-
 
 cozmo.run_program(cozmo_program, use_viewer=True, force_viewer_on_top=True)
