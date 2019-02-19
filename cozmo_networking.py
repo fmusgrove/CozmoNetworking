@@ -38,7 +38,9 @@ class CozmoDance:
 
     async def three_sixty(self):
         await self.robot.turn_in_place(degrees(360)).wait_for_completed()
-
+    async def reverse_three_sixty(self):
+        await self.robot.turn_in_place(degrees(-360)).wait_for_completed()
+    
     async def run_command(self, instructions):
         """
         Run the command on Cozmo set in the instructions param
@@ -66,6 +68,9 @@ class CozmoDance:
                     # 360 No Scope
                     elif move_instructions['LR'] == 'TS':
                         await self.three_sixty()
+                        await self.move_forward(move_instructions['dist_y'])
+                    elif move_instructions['LR'] == 'RTS':
+                        await self.reverse_three_sixty()
                         await self.move_forward(move_instructions['dist_y'])
 
         elif 'head_lift' in instructions:
