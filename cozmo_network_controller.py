@@ -18,22 +18,105 @@ async def send_instructions_ws():
 def send_instructions_socket():
     # Command Bank:
     # Move head down:
-    # s.send(b'Cozmo117AE; )
+    #   s.send(b'Cozmo117AE;-25.0;0')
+    # 
+    # Move head up:
+    #   s.send(b'Cozmo117AE;45.0;0')
+    #      
+    # Move lift up:
+    #   s.send(b'Cozmo117AE;0;1.0')
     #
+    # Move lift down:
+    #   s.send(b'Cozmo117AE;0;0.0')
     #
+    # 360:
+    #   s.send(b'Cozmo117AE;TS;0')
     #
-    #
+    # Reverse:
+    #   s.send(b'Cozmo117AE;F;-55')
     #
     #
 
     s = socket.socket()
     s.connect(("10.0.1.10", 5000))
 
-    s.send(b'Cozmo117AE;56.4;20.3')
+    #s.send(b'Cozmo117AE;56.4;20.3')
+    #time.sleep(0.5)
+    #s.send(b'Cozmo117AE;F;L;300;200')
+    #time.sleep(0.5)
+    #s.send(b'Cozmo117AE;20.8;45.2')
+
+    # Start
+    s.send(b'Cozmo117AE;0;0.0')
+    s.send(b'Cozmo117AE;-25.0;0')
+    time.sleep(7.5)
+    s.send(b'Cozmo117AE;0.0;0')
+    s.send(b'Cozmo117AE;F;-55')
+    time.sleep(1)
+    # 10 seconds in
+    s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;L;300;200')
+    s.send(b'Cozmo117AE;TS;0')
+    s.send(b'Cozmo117AE;TS;0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;20.8;45.2')
+    s.send(b'Cozmo117AE;F;25')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;F;-25')
+    time.sleep(0.5)
+    s.send(b'Cozmo117AE;F;25')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;F;-25')
+    time.sleep(0.25)
+    # 20 seconds in
+    s.send(b'Cozmo117AE;L;200')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    # 30 seconds in
+    s.send(b'Cozmo117AE;B;400')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    # 40 seconds in
+    s.send(b'Cozmo117AE;B;200')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;1.0')
+    time.sleep(0.25)
+    s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.5)
+    s.send(b'Cozmo117AE;0;1.0')
+    s.send(b'Cozmo117AE;45.0;0')
+    s.send(b'Cozmo117AE;TS;0')
+    s.send(b'Cozmo117AE;TS;0')
+
+
+
 
 
 def p2p_network_commands():
