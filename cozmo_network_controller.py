@@ -49,157 +49,157 @@ def send_instructions_socket():
     print('Connected to socket')
 
     # s.send(b'Cozmo117AE;56.4;20.3')
-    # time.sleep(0.5)
+    # 
     # s.send(b'Cozmo117AE;F;L;300;200')
-    # time.sleep(0.5)
+    # 
     # s.send(b'Cozmo117AE;20.8;45.2')
 
     # Start
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.1)
+    
     s.send(b'Cozmo117AE;-25.0;0')
-    time.sleep(7.5)
+    
     s.send(b'Cozmo117AE;0.0;0')
     s.send(b'Cozmo117AE;F;L;-55;0')
-    time.sleep(1)
-    # 10 seconds in
+    
+   
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;TS;0;0')
     s.send(b'Cozmo117AE;F;TS;0;0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;L;25;0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;F;L;-25;0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;L;25;0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;F;L;-25;0')
-    time.sleep(0.25)
-    # 20 seconds in
+    
+   
     s.send(b'Cozmo117AE;F;L;0;200')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    # 30 seconds in
+    
     s.send(b'Cozmo117AE;F;B;0;400')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    # 40 seconds in
+    
     s.send(b'Cozmo117AE;F;B;0;200')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;0;1.0')
     s.send(b'Cozmo117AE;45.0;0')
     s.send(b'Cozmo117AE;F;RTS;0;0')
     s.send(b'Cozmo117AE;F;TS;0;0')
     s.send(b'Cozmo117AE;0.0;0')
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;L;-25;0')
     s.send(b'Cozmo117AE;0;1.0')
     s.send(b'Cozmo117AE;F;L;25;0')
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;TS;0;0')
     s.send(b'Cozmo117AE;F;TS;0;0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;L;25;0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;F;L;-25;0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;L;25;0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;F;L;-25;0')
-    time.sleep(0.25)
+    
 
     s.send(b'Cozmo117AE;F;L;0;200')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
 
     s.send(b'Cozmo117AE;F;B;0;400')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
 
     s.send(b'Cozmo117AE;F;B;0;200')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;1.0')
-    time.sleep(0.25)
+    
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;0;1.0')
     s.send(b'Cozmo117AE;45.0;0')
     s.send(b'Cozmo117AE;F;RTS;0;0')
     s.send(b'Cozmo117AE;F;TS;0;0')
     s.send(b'Cozmo117AE;0.0;0')
     s.send(b'Cozmo117AE;0;0.0')
-    time.sleep(0.5)
+    
     s.send(b'Cozmo117AE;F;L;-25;0')
     s.send(b'Cozmo117AE;0;1.0')
     s.send(b'Cozmo117AE;F;L;25;0')
     s.send(b'Cozmo117AE;0;0.0')
-
-
+    commands = [b'Cozmo117AE;0;0.0', b'Cozmo117AE;-25.0;0', b'Cozmo117AE;0.0;0', b'Cozmo117AE;F;L;-55;0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;0;200', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',b'Cozmo117AE;F;B;0;400',b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',b'Cozmo117AE;F;B;0;200', b'Cozmo117AE;0;1.0', s.send(b'Cozmo117AE;0;0.0')  ]
+    
 def p2p_network_commands():
     host = '127.0.0.1'
     port = 5000
