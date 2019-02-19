@@ -38,17 +38,25 @@ def send_instructions_socket():
     #
     #
 
-    s = socket.socket()
-    s.connect(("10.0.1.10", 5000))
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    #s.send(b'Cozmo117AE;56.4;20.3')
-    #time.sleep(0.5)
-    #s.send(b'Cozmo117AE;F;L;300;200')
-    #time.sleep(0.5)
-    #s.send(b'Cozmo117AE;20.8;45.2')
+    try:
+        s.connect(("10.0.1.10", 5000))
+    except socket.error as msg:
+        print('Socket failed to bind')
+        exit(1)
+
+    print('Connected to socket')
+
+    # s.send(b'Cozmo117AE;56.4;20.3')
+    # time.sleep(0.5)
+    # s.send(b'Cozmo117AE;F;L;300;200')
+    # time.sleep(0.5)
+    # s.send(b'Cozmo117AE;20.8;45.2')
 
     # Start
     s.send(b'Cozmo117AE;0;0.0')
+    time.sleep(0.1)
     s.send(b'Cozmo117AE;-25.0;0')
     time.sleep(7.5)
     s.send(b'Cozmo117AE;0.0;0')
@@ -136,7 +144,7 @@ def send_instructions_socket():
     time.sleep(0.25)
     s.send(b'Cozmo117AE;F;L;-25;0')
     time.sleep(0.25)
-  
+
     s.send(b'Cozmo117AE;F;L;0;200')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
@@ -150,7 +158,7 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;0.0')
-    
+
     s.send(b'Cozmo117AE;F;B;0;400')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
@@ -164,7 +172,7 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;0.0')
-   
+
     s.send(b'Cozmo117AE;F;B;0;200')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
@@ -192,9 +200,6 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;0;0.0')
 
 
-
-
-
 def p2p_network_commands():
     host = '127.0.0.1'
     port = 5000
@@ -213,4 +218,4 @@ def p2p_network_commands():
 
 
 if __name__ == "__main__":
-    p2p_network_commands()
+    send_instructions_socket()
