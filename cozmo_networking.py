@@ -1,8 +1,10 @@
 import asyncio
+
 import cozmo
-from websocket_interface import WebsocketInterface
-from colors import Colors
 from cozmo.util import distance_mm, speed_mmps, degrees
+
+from colors import Colors
+from websocket_interface import WebsocketInterface
 
 
 # region CubeAction Class
@@ -11,10 +13,6 @@ class CozmoDance:
         self.robot = robot
         self.name = name
 
-    async def move_to_cube(self, cube):
-        await self.robot.go_to_object(cube, distance_mm(100.0)).wait_for_completed()
-        await self.robot_say(f'Moved to cube {cube.cube_id}')
-
     async def robot_say(self, text):
         await self.robot.say_text(text, duration_scalar=0.6).wait_for_completed()
 
@@ -22,6 +20,9 @@ class CozmoDance:
         await self.robot.drive_straight(distance_mm(distance), speed_mmps(150)).wait_for_completed()
 
     async def turn_in_place(self):
+        """
+        Do a 180
+        """
         await self.robot.turn_in_place(degrees(180)).wait_for_completed()
 
     async def turn_clockwise(self):
@@ -37,6 +38,9 @@ class CozmoDance:
         await self.robot.turn_in_place(degrees(90)).wait_for_completed()
 
     async def three_sixty(self):
+        """
+        Turn 360 degrees in place
+        """
         await self.robot.turn_in_place(degrees(360)).wait_for_completed()
 
     async def reverse_three_sixty(self):
@@ -101,21 +105,11 @@ async def cozmo_program(robot: cozmo.robot.Robot):
     websocket = WebsocketInterface(ip_address='10.0.1.10', port=5000, name='Cozmo117AE')
     websocket.start()
 
-    # websocket.command_queue.put(WebsocketInterface.parse_message('Cozmo117AE;56.4;0.2'))
-    # websocket.command_queue.put(WebsocketInterface.parse_message('Cozmo117AE;0.0;0.7'))
-
     # Wait to receive keyboard interrupt command to exit (CTRL-C)
-    commands = [b'Cozmo117AE;0;0.0', b'Cozmo117AE;-25.0;0', b'Cozmo117AE;0.0;0', b'Cozmo117AE;F;L;-55;0',
-                b'Cozmo117AE;0;1.0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;L;25;0',
-                b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;0;200',
-                b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0',
-                b'Cozmo117AE;0;0.0', b'Cozmo117AE;F;B;0;400', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',
-                b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;F;B;0;200', b'Cozmo117AE;0;1.0']
-    for command in commands:
+    while True:
         # Grab commands off queue and run them on Cozmo
-        # command = websocket.command_queue.get()
-        commandssss = WebsocketInterface.parse_message(command.decode('utf-8'))
-        await cozmo_dance.run_command(commandssss)
+        command = websocket.command_queue.get()
+        await cozmo_dance.run_command(command)
         await asyncio.sleep(0.5)
 
 
