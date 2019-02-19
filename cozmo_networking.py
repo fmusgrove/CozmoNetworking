@@ -38,15 +38,16 @@ class CozmoDance:
 
     async def three_sixty(self):
         await self.robot.turn_in_place(degrees(360)).wait_for_completed()
-    
+
     async def reverse_three_sixty(self):
         await self.robot.turn_in_place(degrees(-360)).wait_for_completed()
-    
+
     async def run_command(self, instructions):
         """
         Run the command on Cozmo set in the instructions param
         :param instructions: instruction dictionary object to tell Cozmo how to move
         """
+        print('Running Command')
         if 'movement' in instructions:
             if self.name == instructions['movement']['name']:
                 print(f'Received Message: {instructions}')
@@ -80,12 +81,12 @@ class CozmoDance:
                 head_lift_instructions = instructions['head_lift']
 
                 if head_lift_instructions['head_pos'] > 0:
-                    head_angle = max(-25.0,min(head_lift_instructions['head_pos'], 44.5))
-                    self.robot.set_head_angle(degrees(head_angle), in_parallel=True)
+                    head_angle = max(-25.0, min(head_lift_instructions['head_pos'], 44.5))
+                    self.robot.set_head_angle(degrees(head_angle), in_parallel=False)
 
                 if head_lift_instructions['lift_pos'] > 0:
                     lift_height = max(0.0, min(head_lift_instructions['lift_pos'], 1.0))
-                    self.robot.set_lift_height(lift_height, in_parallel=True)
+                    self.robot.set_lift_height(lift_height, in_parallel=False)
 
     async def run(self):
         self.robot.set_all_backpack_lights(Colors.GREEN)
@@ -97,14 +98,24 @@ class CozmoDance:
 
 async def cozmo_program(robot: cozmo.robot.Robot):
     cozmo_dance = CozmoDance(robot, name='Cozmo117AE')
-    websocket = WebsocketInterface(ip_address='127.0.0.1', port=5000, name='Cozmo117AE')
+    websocket = WebsocketInterface(ip_address='10.0.1.10', port=5000, name='Cozmo117AE')
     websocket.start()
 
+    # websocket.command_queue.put(WebsocketInterface.parse_message('Cozmo117AE;56.4;0.2'))
+    # websocket.command_queue.put(WebsocketInterface.parse_message('Cozmo117AE;0.0;0.7'))
+
     # Wait to receive keyboard interrupt command to exit (CTRL-C)
-    while True:
+    commands = [b'Cozmo117AE;0;0.0', b'Cozmo117AE;-25.0;0', b'Cozmo117AE;0.0;0', b'Cozmo117AE;F;L;-55;0',
+                b'Cozmo117AE;0;1.0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;L;25;0',
+                b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;0;200',
+                b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0',
+                b'Cozmo117AE;0;0.0', b'Cozmo117AE;F;B;0;400', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',
+                b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;F;B;0;200', b'Cozmo117AE;0;1.0']
+    for command in commands:
         # Grab commands off queue and run them on Cozmo
-        command = websocket.command_queue.get()
-        await cozmo_dance.run_command(command)
+        # command = websocket.command_queue.get()
+        commandssss = WebsocketInterface.parse_message(command.decode('utf-8'))
+        await cozmo_dance.run_command(commandssss)
         await asyncio.sleep(0.5)
 
 

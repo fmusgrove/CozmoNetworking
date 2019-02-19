@@ -2,6 +2,7 @@ import time
 from queue import Queue
 from threading import Thread
 import socket
+import json
 
 
 class WebsocketInterface:
@@ -9,7 +10,7 @@ class WebsocketInterface:
     Uses a WebSocketApp with callbacks to process and store server messages
     """
 
-    def __init__(self, ip_address='10.0.1.10:5000', port=5000, name='CozmoRobot'):
+    def __init__(self, ip_address='10.0.1.10', port=5000, name='CozmoRobot'):
         self.ip_address = ip_address
         self.port = port
         self.name = name
@@ -18,6 +19,7 @@ class WebsocketInterface:
         self.socket: socket.socket = None
         self.thread = Thread(target=self._listen_on_socket, name='socket_thread', daemon=True)
         self.should_keep_alive = True
+        self.file = open('messages.txt', 'w')
 
     def start(self):
         self.thread.start()
@@ -32,8 +34,17 @@ class WebsocketInterface:
 
         while self.should_keep_alive:
             data = self.socket.recv(4048).decode('utf-8')
+
+            print(f'Preparsed message: {data}')
+
+            if data == b'Cozmo117AE;done':
+                self.should_keep_alive = False
+                self.file.close()
+                print('Closed file')
+
             command = WebsocketInterface.parse_message(data)
-            print(f'General command: {command}')
+            self.file.write(json.dumps(command) + '\n')
+
             self.last_message_time = time.time()
             # Sometimes the command object will be None due to a set frame buffer size
             if command is not None:
@@ -61,7 +72,6 @@ class WebsocketInterface:
             return {'movement': message_obj}
         # Head/lift positions
         elif len(message_list) == 3:
-
             keys = ['name', 'head_pos', 'lift_pos']
 
             message_obj = dict(zip(keys, message_list))

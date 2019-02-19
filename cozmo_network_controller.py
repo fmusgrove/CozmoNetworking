@@ -198,7 +198,7 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;0;1.0')
     s.send(b'Cozmo117AE;F;L;25;0')
     s.send(b'Cozmo117AE;0;0.0')
-    commands = [b'Cozmo117AE;0;0.0', b'Cozmo117AE;-25.0;0', b'Cozmo117AE;0.0;0', b'Cozmo117AE;F;L;-55;0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;0;200', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',b'Cozmo117AE;F;B;0;400',b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',b'Cozmo117AE;F;B;0;200', b'Cozmo117AE;0;1.0', s.send(b'Cozmo117AE;0;0.0')  ]
+    commands = [b'Cozmo117AE;0;0.0', b'Cozmo117AE;-25.0;0', b'Cozmo117AE;0.0;0', b'Cozmo117AE;F;L;-55;0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;TS;0;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;25;0', b'Cozmo117AE;F;L;-25;0', b'Cozmo117AE;F;L;0;200', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',b'Cozmo117AE;F;B;0;400',b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0', b'Cozmo117AE;0;1.0', b'Cozmo117AE;0;0.0',b'Cozmo117AE;F;B;0;200', b'Cozmo117AE;0;1.0']
     
 def p2p_network_commands():
     host = '127.0.0.1'
