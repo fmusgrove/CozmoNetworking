@@ -16,6 +16,16 @@ async def send_instructions_ws():
 
 
 def send_instructions_socket():
+    # Command Bank:
+    # Move head down:
+    # s.send(b'Cozmo117AE; )
+    #
+    #
+    #
+    #
+    #
+    #
+
     s = socket.socket()
     s.connect(("10.0.1.10", 5000))
 
