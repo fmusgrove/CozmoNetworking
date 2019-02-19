@@ -38,6 +38,7 @@ class CozmoDance:
 
     async def three_sixty(self):
         await self.robot.turn_in_place(degrees(360)).wait_for_completed()
+    
     async def reverse_three_sixty(self):
         await self.robot.turn_in_place(degrees(-360)).wait_for_completed()
     

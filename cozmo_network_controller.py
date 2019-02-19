@@ -17,6 +17,7 @@ async def send_instructions_ws():
 
 def send_instructions_socket():
     # Command Bank:
+    #
     # Move head down:
     #   s.send(b'Cozmo117AE;-25.0;0')
     # 
@@ -51,7 +52,7 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;-25.0;0')
     time.sleep(7.5)
     s.send(b'Cozmo117AE;0.0;0')
-    s.send(b'Cozmo117AE;F;-55')
+    s.send(b'Cozmo117AE;F;L;-55;0')
     time.sleep(1)
     # 10 seconds in
     s.send(b'Cozmo117AE;0;1.0')
@@ -59,16 +60,16 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;TS;0')
     s.send(b'Cozmo117AE;TS;0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;25')
+    s.send(b'Cozmo117AE;F;L;25;0')
     time.sleep(0.25)
-    s.send(b'Cozmo117AE;F;-25')
+    s.send(b'Cozmo117AE;F;L;-25;0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;25')
+    s.send(b'Cozmo117AE;F;L;25;0')
     time.sleep(0.25)
-    s.send(b'Cozmo117AE;F;-25')
+    s.send(b'Cozmo117AE;F;L;-25;0')
     time.sleep(0.25)
     # 20 seconds in
-    s.send(b'Cozmo117AE;L;200')
+    s.send(b'Cozmo117AE;F;L;0;200')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
@@ -82,7 +83,7 @@ def send_instructions_socket():
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;0.0')
     # 30 seconds in
-    s.send(b'Cozmo117AE;B;400')
+    s.send(b'Cozmo117AE;F;B;0;400')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
@@ -96,7 +97,7 @@ def send_instructions_socket():
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;0.0')
     # 40 seconds in
-    s.send(b'Cozmo117AE;B;200')
+    s.send(b'Cozmo117AE;F;B;0;200')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
@@ -117,9 +118,9 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;0.0;0')
     s.send(b'Cozmo117AE;0;0.0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;-25')
+    s.send(b'Cozmo117AE;F;L;-25;0')
     s.send(b'Cozmo117AE;0;1.0')
-    s.send(b'Cozmo117AE;F;25')
+    s.send(b'Cozmo117AE;F;L;25;0')
     s.send(b'Cozmo117AE;0;0.0')
     time.sleep(0.5)
     s.send(b'Cozmo117AE;0;1.0')
@@ -127,16 +128,16 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;TS;0')
     s.send(b'Cozmo117AE;TS;0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;25')
+    s.send(b'Cozmo117AE;F;L;25;0')
     time.sleep(0.25)
-    s.send(b'Cozmo117AE;F;-25')
+    s.send(b'Cozmo117AE;F;L;-25;0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;25')
+    s.send(b'Cozmo117AE;F;L;25;0')
     time.sleep(0.25)
-    s.send(b'Cozmo117AE;F;-25')
+    s.send(b'Cozmo117AE;F;L;-25;0')
     time.sleep(0.25)
   
-    s.send(b'Cozmo117AE;L;200')
+    s.send(b'Cozmo117AE;F;L;0;200')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
@@ -150,7 +151,7 @@ def send_instructions_socket():
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;0.0')
     
-    s.send(b'Cozmo117AE;B;400')
+    s.send(b'Cozmo117AE;F;B;0;400')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
@@ -164,7 +165,7 @@ def send_instructions_socket():
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;0.0')
    
-    s.send(b'Cozmo117AE;B;200')
+    s.send(b'Cozmo117AE;F;B;0;200')
     time.sleep(0.25)
     s.send(b'Cozmo117AE;0;1.0')
     time.sleep(0.25)
@@ -185,9 +186,9 @@ def send_instructions_socket():
     s.send(b'Cozmo117AE;0.0;0')
     s.send(b'Cozmo117AE;0;0.0')
     time.sleep(0.5)
-    s.send(b'Cozmo117AE;F;-25')
+    s.send(b'Cozmo117AE;F;L;-25;0')
     s.send(b'Cozmo117AE;0;1.0')
-    s.send(b'Cozmo117AE;F;25')
+    s.send(b'Cozmo117AE;F;L;25;0')
     s.send(b'Cozmo117AE;0;0.0')
 
 
